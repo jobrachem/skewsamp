@@ -1,0 +1,53 @@
+#' Finds the index of the smaller neighbour of the given value in the vector x.
+#'
+#' @param value, value whose neighbour is searched
+#' @param x, numeric vector
+#'
+#' @return integer
+find_smaller_index <- function(value, x) {
+  helper <- function(value) which(x <= value) |> utils::tail(1)
+
+  sapply(value, helper) |> as.numeric()
+}
+
+
+#' Computes the lower boundary value for the empirical CDF
+#'
+#' @param x, a numeric vector
+#'
+#' @return numeric
+create_lower_extension <- function(x) {
+  sorted_x <- sort(x)
+
+  lower_ext <- 2 * sorted_x[1] - sorted_x[2]
+  lower_ext
+}
+
+#' Computes the upper boundary value for the empirical CDF
+#'
+#' @param x, a numeric vector
+#'
+#' @return numeric
+create_upper_extension <- function(x) {
+  m <- length(x)
+  sorted_x <- sort(x)
+
+  upper_ext <- 2 * sorted_x[m] - sorted_x[m - 1]
+
+  upper_ext
+}
+
+
+#' Extends a vector by adding a lower and upper boundary.
+#'
+#' @param x, a numeric vector
+#'
+#' @return extended and sorted numeric vector
+extend_sample <- function(x) {
+  lower_ext <- create_lower_extension(x)
+  upper_ext <- create_upper_extension(x)
+
+  c(lower_ext, sort(x), upper_ext)
+}
+
+
