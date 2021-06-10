@@ -1,3 +1,4 @@
 ^skewsamp\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^R/debug.R$
