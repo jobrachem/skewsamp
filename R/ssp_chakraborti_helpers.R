@@ -22,50 +22,25 @@ n_noether <- function(alpha, power, p) {
 #' @param delta numeric value, location shift parameter \eqn{\delta}
 #'
 #' @return An empirical estimate of \eqn{P(X < X + \delta)}
-estimate_one_p <- function(sample, delta) {
+estimate_p <- function(sample, delta) {
   m <- length(sample)
-  shifted_sample <- sample + delta
-  combined_sample <- extend_sample(c(sample, shifted_sample))
 
-  h <- function(x) pemp(x, shifted_sample) * demp(x, sample)
+  xsample <- extend_sample(sample)
+  shifted_sample <- xsample[-1] + delta
+  combined_sample <- sort(c(xsample, shifted_sample))
 
-  niter <- (2 * m) + 1
-  integral_values <- vector(mode = "numeric", niter)
+  p <- 0
+  for (i in seq(2*m + 2)) {
+    lwr <- combined_sample[i]
+    upr <- combined_sample[i + 1]
 
-  for (i in seq(niter)) {
-    lower <- combined_sample[i]
-    upper <- combined_sample[i + 1]
-    integral <- stats::integrate(h, lower, upper, stop.on.error = FALSE)
+    term1 <- demp(lwr, sample) * (upr - lwr)
+    term2 <- (pemp(upr + delta, sample) + pemp(lwr + delta, sample)) / 2
 
-    integral_values[i] <- integral$value
+    p <- p + (term1 * term2)
   }
 
-  p <- sum(integral_values)
   p
-}
-
-
-#' Estimate \code{p} (\eqn{P(X < X + \delta)}) with resampling
-#'
-#' Based on the given sample, this function takes \code{p_resamples}
-#' resamples from the empirical CDF and estimates \eqn{P(X < X + \delta)}
-#' for each of these. The return value is the arithmetic mean of these
-#' estimates.
-#'
-#' @param sample numeric vector of data to base the estimation on (X)
-#' @param delta numeric value, location shift parameter \eqn{\delta}
-#' @param p_resamples number of resamples to use in the estimation of p
-#'
-#' @return An empirical estimate of \eqn{P(X < X + \delta)}, based on
-#'   \code{p_resamples} resamples.
-estimate_p <- function(sample, delta, p_resamples) {
-  m <- length(sample)
-  resamples <- remp(m * (p_resamples - 1), sample)
-  resamples <- matrix(c(sample, resamples), ncol = m, byrow = TRUE)
-
-  resampled_p_estimates <- apply(resamples, 1, estimate_one_p, delta = delta)
-
-  mean(resampled_p_estimates)
 }
 
 
@@ -76,7 +51,6 @@ estimate_p <- function(sample, delta, p_resamples) {
 #' @param power 1 - Type II error probability, the desired statistical
 #'   power
 #' @param delta numeric value, location shift parameter \eqn{\delta}
-#' @param p_resamples number of resamples to use in the estimation of p
 #'
 #' @return numeric value, an estimate of the sample size required to
 #'   detect a location shift of \code{delta} with a Wilcoxon Mann-Whitney
@@ -84,9 +58,9 @@ estimate_p <- function(sample, delta, p_resamples) {
 #' @export
 #'
 #' @examples
-#' estimate_one_n(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5, p_resamples = 10)
-estimate_one_n <- function(sample, alpha, power, delta, p_resamples = 1) {
-  p <- estimate_p(sample, delta, p_resamples)
+#' estimate_one_n(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5)
+estimate_one_n <- function(sample, alpha, power, delta) {
+  p <- estimate_p(sample, delta)
   n <- n_noether(alpha, power, p)
   n
 }

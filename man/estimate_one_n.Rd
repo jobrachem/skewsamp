@@ -4,7 +4,7 @@
 \alias{estimate_one_n}
 \title{Estimate N}
 \usage{
-estimate_one_n(sample, alpha, power, delta, p_resamples = 1)
+estimate_one_n(sample, alpha, power, delta)
 }
 \arguments{
 \item{sample}{pilot data}
@@ -15,8 +15,6 @@ estimate_one_n(sample, alpha, power, delta, p_resamples = 1)
 power}
 
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
-
-\item{p_resamples}{number of resamples to use in the estimation of p}
 }
 \value{
 numeric value, an estimate of the sample size required to
@@ -27,5 +25,5 @@ test with \code{power} and \code{alpha}.
 Estimate N
 }
 \examples{
-estimate_one_n(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5, p_resamples = 10)
+estimate_one_n(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5)
 }

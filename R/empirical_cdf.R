@@ -17,12 +17,12 @@ pemp <- function(q, sample) {
   if (m < 2) stop("sample must have length >= 2")
   xsample <- extend_sample(sample)
 
-  i <- find_smaller_index(q, xsample) - 1
+  i <- find_smaller_index(q, xsample)
 
-  lower_neighbours <- xsample[i + 1]
-  upper_neighbours <- xsample[i + 2]
+  lower_neighbours <- xsample[i]
+  upper_neighbours <- xsample[i + 1]
 
-  term1 <- i / (m + 1)
+  term1 <- (i - 1) / (m + 1)
   term2a <- q - lower_neighbours
   term2b <- (m + 1) * (upper_neighbours - lower_neighbours)
 
@@ -53,9 +53,9 @@ demp <- function(x, sample) {
   lower_ext <- xsample[1]
   upper_ext <- xsample[m + 2]
 
-  i <- find_smaller_index(x, xsample) - 1 # start at 0
-  lower_neighbours <- xsample[i + 1]
-  upper_neighbours <- xsample[i + 2]
+  i <- find_smaller_index(x, xsample)
+  lower_neighbours <- xsample[i]
+  upper_neighbours <- xsample[i + 1]
 
   density_value <- 1 / ((m + 1) * (upper_neighbours - lower_neighbours))
 

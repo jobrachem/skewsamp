@@ -1,7 +1,7 @@
 test_that("numerical estimation of p runs", {
   x <- rnorm(10)
   delta <- 0.5
-  p <- estimate_one_p(x, delta)
+  p <- estimate_p(x, delta)
 
   expect_length(p, 1)
   expect_lte(p, 1)
@@ -98,9 +98,8 @@ test_that("N estimation runs", {
   pwr <- 0.8
   x <- rnorm(10)
   delta <- 0.5
-  p_resamples <- 1
 
-  n <- estimate_one_n(x, a, pwr, delta, p_resamples)
+  n <- estimate_one_n(x, a, pwr, delta)
   expect_length(n, 1)
 })
 
@@ -110,10 +109,10 @@ test_that("N estimation increases with power", {
   x <- rnorm(10)
   pwr1 <- 0.8
   pwr2 <- 0.9
-  p_resamples <- 1
 
-  n1 <- estimate_one_n(x, a, pwr1, delta, p_resamples)
-  n2 <- estimate_one_n(x, a, pwr2, delta, p_resamples)
+
+  n1 <- estimate_one_n(x, a, pwr1, delta)
+  n2 <- estimate_one_n(x, a, pwr2, delta)
 
   expect_gt(n2, n1)
 })
@@ -125,12 +124,12 @@ test_that("N estimation increases with delta approaching 0 from below", {
   d1 <- 1
   d2 <- 0.5
   d3 <- 0.1
-  p_resamples <- 1
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1, p_resamples)
-  n2 <- estimate_one_n(x, a, pwr, d2, p_resamples)
-  n3 <- estimate_one_n(x, a, pwr, d3, p_resamples)
+
+  n1 <- estimate_one_n(x, a, pwr, d1)
+  n2 <- estimate_one_n(x, a, pwr, d2)
+  n3 <- estimate_one_n(x, a, pwr, d3)
 
   expect_gt(n2, n1)
   expect_gt(n3, n1)
@@ -145,12 +144,12 @@ test_that("N estimation increases with delta approaching 0 from above", {
   d1 <- -1
   d2 <- -0.5
   d3 <- -0.1
-  p_resamples <- 1
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1, p_resamples)
-  n2 <- estimate_one_n(x, a, pwr, d2, p_resamples)
-  n3 <- estimate_one_n(x, a, pwr, d3, p_resamples)
+
+  n1 <- estimate_one_n(x, a, pwr, d1)
+  n2 <- estimate_one_n(x, a, pwr, d2)
+  n3 <- estimate_one_n(x, a, pwr, d3)
 
   expect_gt(n2, n1)
   expect_gt(n3, n1)
@@ -163,11 +162,11 @@ test_that("N estimation is symmetric for delta > 0 and delta < 0", {
   x <- rnorm(10)
   d1 <- -1
   d2 <- -1
-  p_resamples <- 1
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1, p_resamples)
-  n2 <- estimate_one_n(x, a, pwr, d2, p_resamples)
+
+  n1 <- estimate_one_n(x, a, pwr, d1)
+  n2 <- estimate_one_n(x, a, pwr, d2)
 
   expect_equal(n1, n2)
 })
@@ -180,11 +179,11 @@ test_that("N estimation decreses as alpha increases", {
 
   pwr <- 0.8
   delta <- 0.3
-  p_resamples <- 1
 
 
-  n1 <- estimate_one_n(x, a1, pwr, delta, p_resamples)
-  n2 <- estimate_one_n(x, a2, pwr, delta, p_resamples)
+
+  n1 <- estimate_one_n(x, a1, pwr, delta)
+  n2 <- estimate_one_n(x, a2, pwr, delta)
 
   expect_gt(n1, n2)
 })
@@ -195,13 +194,12 @@ test_that("resample N runs", {
   pwr <- 0.8
   delta <- 0.6
   x <- rnorm(10)
-  p_resamples <- 1
+
 
   n_estimates <- resample_one_n(x, 50,
                                 alpha = a,
                                 power = pwr,
-                                delta = delta,
-                                p_resamples = p_resamples)
+                                delta = delta)
 
   expect_length(n_estimates, 50)
 
