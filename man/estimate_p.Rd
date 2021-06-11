@@ -2,24 +2,18 @@
 % Please edit documentation in R/ssp_chakraborti_helpers.R
 \name{estimate_p}
 \alias{estimate_p}
-\title{Estimate \code{p} (\eqn{P(X < X + \delta)}) with resampling}
+\title{Computes an empirical estimate of \code{p} (\eqn{P(X < X + \delta)})}
 \usage{
-estimate_p(sample, delta, p_resamples)
+estimate_p(sample, delta)
 }
 \arguments{
 \item{sample}{numeric vector of data to base the estimation on (X)}
 
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
-
-\item{p_resamples}{number of resamples to use in the estimation of p}
 }
 \value{
-An empirical estimate of \eqn{P(X < X + \delta)}, based on
-\code{p_resamples} resamples.
+An empirical estimate of \eqn{P(X < X + \delta)}
 }
 \description{
-Based on the given sample, this function takes \code{p_resamples}
-resamples from the empirical CDF and estimates \eqn{P(X < X + \delta)}
-for each of these. The return value is the arithmetic mean of these
-estimates.
+Computes an empirical estimate of \code{p} (\eqn{P(X < X + \delta)})
 }
