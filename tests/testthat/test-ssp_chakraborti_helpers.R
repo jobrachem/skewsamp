@@ -99,7 +99,7 @@ test_that("N estimation runs", {
   x <- rnorm(10)
   delta <- 0.5
 
-  n <- estimate_one_n(x, a, pwr, delta)
+  n <- n_locshift_one(x, a, pwr, delta)
   expect_length(n, 1)
 })
 
@@ -111,8 +111,8 @@ test_that("N estimation increases with power", {
   pwr2 <- 0.9
 
 
-  n1 <- estimate_one_n(x, a, pwr1, delta)
-  n2 <- estimate_one_n(x, a, pwr2, delta)
+  n1 <- n_locshift_one(x, a, pwr1, delta)
+  n2 <- n_locshift_one(x, a, pwr2, delta)
 
   expect_gt(n2, n1)
 })
@@ -127,9 +127,9 @@ test_that("N estimation increases with delta approaching 0 from below", {
 
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1)
-  n2 <- estimate_one_n(x, a, pwr, d2)
-  n3 <- estimate_one_n(x, a, pwr, d3)
+  n1 <- n_locshift_one(x, a, pwr, d1)
+  n2 <- n_locshift_one(x, a, pwr, d2)
+  n3 <- n_locshift_one(x, a, pwr, d3)
 
   expect_gt(n2, n1)
   expect_gt(n3, n1)
@@ -147,9 +147,9 @@ test_that("N estimation increases with delta approaching 0 from above", {
 
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1)
-  n2 <- estimate_one_n(x, a, pwr, d2)
-  n3 <- estimate_one_n(x, a, pwr, d3)
+  n1 <- n_locshift_one(x, a, pwr, d1)
+  n2 <- n_locshift_one(x, a, pwr, d2)
+  n3 <- n_locshift_one(x, a, pwr, d3)
 
   expect_gt(n2, n1)
   expect_gt(n3, n1)
@@ -165,8 +165,8 @@ test_that("N estimation is symmetric for delta > 0 and delta < 0", {
 
 
 
-  n1 <- estimate_one_n(x, a, pwr, d1)
-  n2 <- estimate_one_n(x, a, pwr, d2)
+  n1 <- n_locshift_one(x, a, pwr, d1)
+  n2 <- n_locshift_one(x, a, pwr, d2)
 
   expect_equal(n1, n2)
 })
@@ -182,8 +182,8 @@ test_that("N estimation decreses as alpha increases", {
 
 
 
-  n1 <- estimate_one_n(x, a1, pwr, delta)
-  n2 <- estimate_one_n(x, a2, pwr, delta)
+  n1 <- n_locshift_one(x, a1, pwr, delta)
+  n2 <- n_locshift_one(x, a2, pwr, delta)
 
   expect_gt(n1, n2)
 })
@@ -196,7 +196,7 @@ test_that("resample N runs", {
   x <- rnorm(10)
 
 
-  n_estimates <- resample_one_n(x, 50,
+  n_estimates <- resample_n_locshift_one(x, 50,
                                 alpha = a,
                                 power = pwr,
                                 delta = delta)
