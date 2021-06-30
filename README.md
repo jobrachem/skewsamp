@@ -17,6 +17,6 @@ The goal of skewsamp is to ...
 
 ### Chakraborti N estimation
 
-- `estimate_n_chak` estimate N based on two pilot samples
-- `resample_n_chak` compute a number of resamples and estimate N for each of them. You get a distribution of N estimates based on a single set of pilot samples.
+- `n_locshift` estimate N based on two pilot samples
+- `resample_n_locshift` compute a number of resamples and estimate N for each of them. You get a distribution of N estimates based on a single set of pilot samples.
 
