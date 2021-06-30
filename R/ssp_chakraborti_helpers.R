@@ -44,7 +44,7 @@ estimate_p <- function(sample, delta) {
 }
 
 
-#' Estimate N
+#' Estimate N on the basis of one pilot sample.
 #'
 #' @param sample pilot data
 #' @param alpha Type I error probability
@@ -58,8 +58,8 @@ estimate_p <- function(sample, delta) {
 #' @export
 #'
 #' @examples
-#' estimate_one_n(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5)
-estimate_one_n <- function(sample, alpha, power, delta) {
+#' n_locshift_one(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5)
+n_locshift_one <- function(sample, alpha, power, delta) {
   p <- estimate_p(sample, delta)
   n <- n_noether(alpha, power, p)
   n
@@ -70,14 +70,20 @@ estimate_one_n <- function(sample, alpha, power, delta) {
 #'
 #' @param sample pilot data
 #' @param n_resamples number of resamples to use in bootstrapping
-#' @param ... arguments passed on to \code{\link{estimate_one_n}}.
+#' @param alpha Type I error probability
+#' @param power 1 - Type II error probability, the desired statistical
+#'   power
+#' @param delta numeric value, location shift parameter \eqn{\delta}
 #'
 #' @return numeric vector of sample size estimates
-resample_one_n <- function(sample, n_resamples, ...) {
+resample_n_locshift_one <- function(sample, n_resamples, alpha, power, delta) {
   m <- length(sample)
   resamples <- remp(m * (n_resamples - 1), sample)
   resamples <- matrix(c(sample, resamples), ncol = m, byrow = TRUE)
 
-  resampled_n_estimates <- apply(resamples, 1, estimate_one_n, ...)
+  resampled_n_estimates <- apply(resamples, 1, n_locshift_one,
+                                 alpha = alpha,
+                                 power = power,
+                                 delta = delta)
   resampled_n_estimates
 }
