@@ -8,7 +8,7 @@ The goal of skewsamp is to ...
 
 ## Main functions
 
-### Empirical densitiy
+### Empirical density
 
 - `pemp` empirical CDF
 - `demp` empirical PDF

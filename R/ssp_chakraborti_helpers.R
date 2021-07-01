@@ -26,7 +26,7 @@ estimate_p <- function(sample, delta) {
   m <- length(sample)
 
   xsample <- extend_sample(sample)
-  shifted_sample <- xsample[-1] + delta
+  shifted_sample <- xsample[-1] - delta
   combined_sample <- sort(c(xsample, shifted_sample))
 
   p <- 0
