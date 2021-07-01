@@ -5,9 +5,9 @@
 #'
 #' @return integer
 find_smaller_index <- function(value, x) {
-  helper <- function(value) which(x <= value) |> utils::tail(1)
+  helper <- function(value) utils::tail(which(x <= value), 1)
 
-  sapply(value, helper) |> as.numeric()
+  as.numeric(sapply(value, helper))
 }
 
 
