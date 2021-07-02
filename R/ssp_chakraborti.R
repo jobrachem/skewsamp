@@ -14,8 +14,8 @@
 #' @examples
 #' n_locshift(s1 = rnorm(10), s2 = rnorm(10), alpha = 0.05, power = 0.9, delta = 0.5)
 n_locshift <- function(s1, s2, delta, power, alpha) {
-  n1 <- estimate_one_n(s1, alpha, power, delta)
-  n2 <- estimate_one_n(s2, alpha, power, delta)
+  n1 <- n_locshift_one(s1, alpha, power, delta)
+  n2 <- n_locshift_one(s2, alpha, power, delta)
 
   ceiling((n1 + n2) / 2)
 }
