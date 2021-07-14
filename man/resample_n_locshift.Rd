@@ -2,25 +2,30 @@
 % Please edit documentation in R/ssp_chakraborti.R
 \name{resample_n_locshift}
 \alias{resample_n_locshift}
-\title{Compute \code{n_resamples} estimates of N based on two pilot samples.}
+\title{Compute a distribution of estimates of N based on two pilot samples.}
 \usage{
-resample_n_locshift(s1, s2, n_resamples, delta, power, alpha)
+resample_n_locshift(s1, s2, delta, alpha, power, n_resamples = 500)
 }
 \arguments{
 \item{s1, s2}{Pilot samples}
 
-\item{n_resamples}{number of resamples to use in bootstrapping}
-
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
+
+\item{alpha}{Type I error probability}
 
 \item{power}{1 - Type II error probability, the desired statistical
 power}
 
-\item{alpha}{Type I error probability}
+\item{n_resamples}{number of resamples to use in bootstrapping}
 }
 \value{
 numeric vector of sample size estimates
 }
 \description{
-Compute \code{n_resamples} estimates of N based on two pilot samples.
+Chakraborti, Hong, & van de Wiel (2006)
+}
+\details{
+Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
+sample size determination for a nonparametric test of location.
+Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 }

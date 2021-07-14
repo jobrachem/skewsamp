@@ -76,7 +76,7 @@ n_locshift_one <- function(sample, alpha, power, delta) {
 #' @param delta numeric value, location shift parameter \eqn{\delta}
 #'
 #' @return numeric vector of sample size estimates
-resample_n_locshift_one <- function(sample, n_resamples, alpha, power, delta) {
+resample_n_locshift_one <- function(sample, alpha, power, delta, n_resamples) {
   m <- length(sample)
   resamples <- remp(m * (n_resamples - 1), sample)
   resamples <- matrix(c(sample, resamples), ncol = m, byrow = TRUE)
