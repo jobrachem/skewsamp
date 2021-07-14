@@ -1,6 +1,6 @@
 Package: skewsamp
 Title: Estimate Sample Sizes for Group Comparisons with Skewed Distributions
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     c(
     as.person("Johannes Brachem <johannes.brachem@stud.uni-goettingen.de> [cre, aut]"),
