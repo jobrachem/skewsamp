@@ -15,3 +15,4 @@ extended and sorted numeric vector
 \description{
 Extends a vector by adding a lower and upper boundary.
 }
+\keyword{internal}

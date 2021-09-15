@@ -43,7 +43,7 @@ mean with respect to the link: \eqn{d\mu / d\eta}.}
 allocated to the control group}
 }
 \value{
-Sample size
+Total sample size (numeric)
 }
 \description{
 Citation: Cundill & Alexander (2015)

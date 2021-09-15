@@ -4,7 +4,15 @@
 \alias{resample_n_locshift}
 \title{Compute a distribution of estimates of N based on two pilot samples.}
 \usage{
-resample_n_locshift(s1, s2, delta, alpha, power, n_resamples = 500)
+resample_n_locshift(
+  s1,
+  s2,
+  delta,
+  alpha = 0.05,
+  power = 0.9,
+  n_resamples = 500,
+  q = 0.5
+)
 }
 \arguments{
 \item{s1, s2}{Pilot samples}
@@ -17,6 +25,8 @@ resample_n_locshift(s1, s2, delta, alpha, power, n_resamples = 500)
 power}
 
 \item{n_resamples}{number of resamples to use in bootstrapping}
+
+\item{q}{size of group0 relative to total sample size.}
 }
 \value{
 numeric vector of sample size estimates

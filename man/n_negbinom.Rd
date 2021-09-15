@@ -6,21 +6,20 @@
 \usage{
 n_negbinom(
   mean0,
-  efficacy,
+  effect,
   dispersion0,
   dispersion1 = dispersion0,
   alpha = 0.05,
   power = 0.9,
   q = 0.5,
-  link_fun = log,
-  dmu_deta_fun = function(mu) mu,
+  link = c("log", "identity"),
   two_sided = TRUE
 )
 }
 \arguments{
 \item{mean0}{Mean in control group}
 
-\item{efficacy}{Effect size, \eqn{1 - (\mu_1 / \mu_0)}, where
+\item{effect}{Effect size, \eqn{1 - (\mu_1 / \mu_0)}, where
 \eqn{\mu_0} is the mean in the control group (\code{mean0}) and
 \eqn{\mu_1} is the mean in the treatment group.}
 
@@ -35,12 +34,7 @@ n_negbinom(
 
 \item{q}{Proportion of observations allocated to the control group}
 
-\item{link_fun}{function object, the link function to use}
-
-\item{dmu_deta_fun}{function object, derivative of the original
-mean with respect to the link: \eqn{d\mu / d\eta}. Must fit
-the specified link function. In the default case of a log link,
-we have \eqn{d\mu / d\eta = \mu}.}
+\item{link}{Link function to use. Currently implement: 'log' and 'identity'}
 
 \item{two_sided}{logical, if \code{TRUE} the sample size
 will be calculated for a two-sided test. Otherwise, the sample
@@ -49,9 +43,9 @@ size will be calculated for a one-sided test.}
 \value{
 Returns an object of class \code{"sample_size"}. It contains
 the following components:
-\item{n}{the total sample size}
-\item{n1}{sample size in Group 1 (control group)}
-\item{n2}{sample size in Group 2 (treatment group)}
+\item{N}{the total sample size}
+\item{n0}{sample size in Group 0 (control group)}
+\item{n1}{sample size in Group 1 (treatment group)}
 \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 refers to a two-sided test}
 \item{alpha}{type I error rate used in sample size estimation}
@@ -70,6 +64,6 @@ for skewed distributions. \emph{BMC Medical Research Methodology},
 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 }
 \examples{
-n_negbinom(mean0 = 71.4, efficacy = 0.7, dispersion0 = 0.33,
+n_negbinom(mean0 = 71.4, effect = 0.7, dispersion0 = 0.33,
            alpha = 0.05, power = 0.9)
 }

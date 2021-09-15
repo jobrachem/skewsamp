@@ -17,3 +17,4 @@ An empirical estimate of \eqn{P(X < X + \delta)}
 \description{
 Computes an empirical estimate of \code{p} (\eqn{P(X < X + \delta)})
 }
+\keyword{internal}

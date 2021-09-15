@@ -4,24 +4,26 @@
 \alias{n_locshift}
 \title{Estimate N on the basis of two pilot samples.}
 \usage{
-n_locshift(s1, s2, delta, alpha, power)
+n_locshift(s1, s2, delta, alpha = 0.05, power = 0.9, q = 0.5)
 }
 \arguments{
-\item{s1, s2}{Pilot samples}
+\item{s1, s2}{pilot samples}
 
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
 
-\item{alpha}{Type I error probability}
+\item{alpha}{type-I error probability}
 
-\item{power}{1 - Type II error probability, the desired statistical
+\item{power}{1 - type-II error probability, the desired statistical
 power}
+
+\item{q}{size of group0 relative to total sample size.}
 }
 \value{
 Returns an object of class \code{"sample_size"}. It contains
 the following components:
-\item{n}{the total sample size}
-\item{n1}{sample size in Group 1 (control group)}
-\item{n2}{sample size in Group 2 (treatment group)}
+\item{N}{the total sample size}
+\item{n0}{sample size in Group 0 (control group)}
+\item{n1}{sample size in Group 1 (treatment group)}
 \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 refers to a two-sided test}
 \item{alpha}{type I error rate used in sample size estimation}

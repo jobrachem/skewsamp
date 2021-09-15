@@ -4,7 +4,7 @@
 \alias{resample_n_locshift_one}
 \title{Compute \code{n_resamples} estimates of N}
 \usage{
-resample_n_locshift_one(sample, alpha, power, delta, n_resamples)
+resample_n_locshift_one(sample, alpha, power, delta, n_resamples, q)
 }
 \arguments{
 \item{sample}{pilot data}
@@ -17,6 +17,8 @@ power}
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
 
 \item{n_resamples}{number of resamples to use in bootstrapping}
+
+\item{q}{size of group0 relative to total sample size.}
 }
 \value{
 numeric vector of sample size estimates
@@ -24,3 +26,4 @@ numeric vector of sample size estimates
 \description{
 Compute \code{n_resamples} estimates of N
 }
+\keyword{internal}
