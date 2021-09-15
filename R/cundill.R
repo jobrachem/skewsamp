@@ -22,7 +22,7 @@
 #' @param q Number between 0 and 1, the proportion of observations
 #'   allocated to the control group
 #'
-#' @return Sample size
+#' @return Total sample size (numeric)
 #' @export
 #'
 n_glm <- function(
@@ -60,7 +60,7 @@ n_glm <- function(
 #' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #'
 #' @param mean0 Mean in control group
-#' @param efficacy Effect size, \eqn{1 - (\mu_1 / \mu_0)}, where
+#' @param effect Effect size, \eqn{1 - (\mu_1 / \mu_0)}, where
 #'   \eqn{\mu_0} is the mean in the control group (\code{mean0}) and
 #'   \eqn{\mu_1} is the mean in the treatment group.
 #' @param shape0 Shape parameter in control group
@@ -69,20 +69,16 @@ n_glm <- function(
 #' @param alpha Type I error rate
 #' @param power 1 - Type II error rate
 #' @param q Proportion of observations allocated to the control group
-#' @param link_fun function object, the link function to use
-#' @param dmu_deta_fun function object, derivative of the original
-#'   mean with respect to the link: \eqn{d\mu / d\eta}. Must fit
-#'   the specified link function. In the default case of a log link,
-#'   we have \eqn{d\mu / d\eta = \mu}.
+#' @param link Link function to use. Currently implement: 'log' and 'identity'
 #' @param two_sided logical, if \code{TRUE} the sample size
 #'   will be calculated for a two-sided test. Otherwise, the sample
 #'   size will be calculated for a one-sided test.
 #'
 #' @return Returns an object of class \code{"sample_size"}. It contains
 #'   the following components:
-#'   \item{n}{the total sample size}
-#'   \item{n1}{sample size in Group 1 (control group)}
-#'   \item{n2}{sample size in Group 2 (treatment group)}
+#'   \item{N}{the total sample size}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
 #'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 #'     refers to a two-sided test}
 #'   \item{alpha}{type I error rate used in sample size estimation}
@@ -93,37 +89,40 @@ n_glm <- function(
 #'   \item{call}{the matched call.}
 #'
 #' @examples
-#' n_gamma(mean0 = 8.46, efficacy = 0.7, shape0 = 0.639,
+#' n_gamma(mean0 = 8.46, effect = 0.7, shape0 = 0.639,
 #'            alpha = 0.05, power = 0.9)
 #' @export
 #'
-n_gamma <- function(mean0, efficacy, shape0, shape1 = shape0,
+n_gamma <- function(mean0, effect, shape0, shape1 = shape0,
                     alpha = 0.05, power = 0.9, q = 0.5,
-                    link_fun = log, dmu_deta_fun = function(mu) mu,
+                    link = c("log", "identity"),
                     two_sided = TRUE
 ) {
 
+  link <- match.arg(link)
+  dmu_deta_fun <- dmu_deta_funs[[link]]
+  link_fun <- linkfuns[[link]]
+
   alpha <- ifelse(two_sided, alpha, alpha * 2)
 
-  mean1 <- mean0 * (1 - efficacy)
+  mean1 <- mean0 * (1 - effect)
   dispersion0 <- shape0
   dispersion1 <- shape1
 
   variance_fun <- function(mu, dispersion) mu^2 / dispersion
-  dmu_deta_fun <- function(mu) mu
 
   n <- n_glm(mean0, mean1, dispersion0, dispersion1,
              alpha, power,
-             link_fun, variance_fun, dmu_deta_fun,
+             link_fun, variance_fun, dmu_deta_fun = dmu_deta_fun,
              q)
 
-  comment <- "Generalized Regression, Gamma Distribution"
+  comment <- paste("Generalized Regression, Gamma Distribution, link:", link)
   n <- sample_size(n, two_sided = TRUE, alpha = alpha, power = power,
-                   effect = efficacy, effect_type = "efficacy",
+                   effect = effect, effect_type = "1 - (mean1/mean0)",
                    q = q,
                    comment = comment,
                    call = match.call()
-                  )
+  )
 
   n
 }
@@ -144,9 +143,9 @@ n_gamma <- function(mean0, efficacy, shape0, shape1 = shape0,
 #'
 #' @return Returns an object of class \code{"sample_size"}. It contains
 #'   the following components:
-#'   \item{n}{the total sample size}
-#'   \item{n1}{sample size in Group 1 (control group)}
-#'   \item{n2}{sample size in Group 2 (treatment group)}
+#'   \item{N}{the total sample size}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
 #'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 #'     refers to a two-sided test}
 #'   \item{alpha}{type I error rate used in sample size estimation}
@@ -157,34 +156,175 @@ n_gamma <- function(mean0, efficacy, shape0, shape1 = shape0,
 #'   \item{call}{the matched call.}
 #'
 #' @examples
-#' n_negbinom(mean0 = 71.4, efficacy = 0.7, dispersion0 = 0.33,
+#' n_negbinom(mean0 = 71.4, effect = 0.7, dispersion0 = 0.33,
 #'            alpha = 0.05, power = 0.9)
 #' @export
-n_negbinom <- function(mean0, efficacy,
+n_negbinom <- function(mean0, effect,
                        dispersion0, dispersion1 = dispersion0,
                        alpha = 0.05, power = 0.9, q = 0.5,
-                       link_fun = log,
-                       dmu_deta_fun = function(mu) mu,
+                       link = c("log", "identity"),
                        two_sided = TRUE) {
+
+  link <- match.arg(link)
+  dmu_deta_fun <- dmu_deta_funs[[link]]
+  link_fun <- linkfuns[[link]]
 
   alpha <- ifelse(two_sided, alpha, alpha * 2)
 
-  mean1 <- mean0 * (1 - efficacy)
+  mean1 <- mean0 * (1 - effect)
   variance_fun <- function(mu, dispersion) mu + (mu^2 / dispersion)
-  dmu_deta_fun <- function(mu) mu
 
   n <- n_glm(mean0, mean1, dispersion0, dispersion1,
              alpha, power,
              link_fun, variance_fun, dmu_deta_fun,
              q)
 
-  comment <- "Generalized Regression, Negative Binomial Distribution"
+  comment <- paste("Generalized Regression, Negative Binomial Distribution, link:", link)
   n <- sample_size(n, two_sided = TRUE, alpha = alpha, power = power,
-                   effect = efficacy, effect_type = "efficacy",
+                   effect = effect, effect_type = "1 - (mean1/mean0)",
                    q = q,
                    comment = comment,
                    call = match.call()
-                   )
+  )
   n
 }
 
+
+#' Calculate sample size for poisson distribution
+#'
+#' Citation: Cundill & Alexander (2015)
+#'
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+#'
+#' @inheritParams n_gamma
+#'
+#' @return Returns an object of class \code{"sample_size"}. It contains
+#'   the following components:
+#'   \item{N}{the total sample size}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
+#'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
+#'     refers to a two-sided test}
+#'   \item{alpha}{type I error rate used in sample size estimation}
+#'   \item{power}{target power used in sample size estimation}
+#'   \item{effect}{effect size used in sample size estimation}
+#'   \item{effect_type}{short description of the type of effect size}
+#'   \item{comment}{additional comment, if there is any}
+#'   \item{call}{the matched call.}
+#'
+#' @examples
+#' n_poisson(mean0 = 5, effect = 0.3)
+#' @export
+n_poisson <- function(mean0, effect,
+                      alpha = 0.05, power = 0.9, q = 0.5,
+                      link = c("log", "identity"),
+                      two_sided = TRUE) {
+
+  link <- match.arg(link)
+  dmu_deta_fun <- dmu_deta_funs[[link]]
+  link_fun <- linkfuns[[link]]
+
+  alpha <- ifelse(two_sided, alpha, alpha * 2)
+
+  mean1 <- mean0 * (1 - effect)
+  variance_fun <- function(mu, dispersion) mu
+
+  dispersion0 <- dispersion1 <- NULL
+
+  n <- n_glm(mean0, mean1, dispersion0, dispersion1,
+             alpha, power,
+             link_fun, variance_fun, dmu_deta_fun,
+             q)
+
+  comment <- paste("Generalized Regression, Poisson Distribution, link:", link)
+  n <- sample_size(n, two_sided = TRUE, alpha = alpha, power = power,
+                   effect = effect, effect_type = "1 - (mean1/mean0)",
+                   q = q,
+                   comment = comment,
+                   call = match.call()
+  )
+  n
+}
+
+
+#' Calculate sample size for binomial distribution
+#'
+#' Citation: Cundill & Alexander (2015)
+#'
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+#'
+#' @param p0 probability of success in group0
+#' @param size number of trials (greater than zero)
+#' @inheritParams n_gamma
+#'
+#' @return Returns an object of class \code{"sample_size"}. It contains
+#'   the following components:
+#'   \item{N}{the total sample size}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
+#'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
+#'     refers to a two-sided test}
+#'   \item{alpha}{type I error rate used in sample size estimation}
+#'   \item{power}{target power used in sample size estimation}
+#'   \item{effect}{effect size used in sample size estimation}
+#'   \item{effect_type}{short description of the type of effect size}
+#'   \item{comment}{additional comment, if there is any}
+#'   \item{call}{the matched call.}
+#'
+#' @examples
+#' n_binom(p0 = 0.5, effect = 0.3)
+#' @export
+n_binom <- function(p0,
+                    effect,
+                    size = 1,
+                    alpha = 0.05, power = 0.9, q = 0.5,
+                    link = c("logit", "identity"),
+                    two_sided = TRUE) {
+
+  if (!(p0 >= 0 & p0 <= 1)) stop("p0 must lie between 0 and 1.")
+  if (!(size > 0)) stop("size must be > 0")
+
+  link <- match.arg(link)
+  dmu_deta_fun <- dmu_deta_funs[[link]]
+  link_fun <- linkfuns[[link]]
+
+  alpha <- ifelse(two_sided, alpha, alpha * 2)
+
+  odds1 <- p0 / (1 - p0) / (1 - effect)
+  mean1 <- odds1 / (1 + odds1)
+  mean0 <- p0
+
+  variance_fun <- function(mu, dispersion) (mu * (1 - mu)) / dispersion
+
+  dispersion0 <- dispersion1 <- size
+
+  n <- n_glm(mean0, mean1, dispersion0, dispersion1,
+             alpha, power,
+             link_fun, variance_fun, dmu_deta_fun,
+             q)
+
+  comment <- paste("Generalized Regression, Binomial Distribution, link:", link)
+  n <- sample_size(n, two_sided = TRUE, alpha = alpha, power = power,
+                   effect = effect, effect_type = "1 - Odds Ratio",
+                   q = q,
+                   comment = comment,
+                   call = match.call()
+  )
+  n
+}
+
+linkfuns <- list(
+  "log" = log,
+  "logit" = function(x) log(x / (1 - x)),
+  "identity" = identity
+)
+
+dmu_deta_funs <- list(
+  "log" = function(mu) mu,
+  "identity" = function(mu) 1,
+  "logit" = function(mu) mu * (1 - mu)
+)
