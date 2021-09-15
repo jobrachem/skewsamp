@@ -3,9 +3,9 @@
 \name{n_noether}
 \alias{n_noether}
 \title{Noether's (1987) formula for obtaining a sample size estimation for
-the Wilcoxon Mann-Whitney test.}
+the two-sample Wilcoxon Mann-Whitney test.}
 \usage{
-n_noether(alpha, power, p)
+n_noether(alpha, power, p, q = 0.5)
 }
 \arguments{
 \item{alpha}{Type I error probability}
@@ -15,11 +15,16 @@ power}
 
 \item{p}{probability \eqn{P(X < Y)} that a random observation from
 group X is smaller than a random observation from group Y}
+
+\item{q}{relative sample size of the X-sample. Number between 0 and 1.
+q = 0.5 means that the size of the X-sample will be 50\% of the
+total sample size}
 }
 \value{
-estimated required sample size
+estimated required total sample size
 }
 \description{
 Noether's (1987) formula for obtaining a sample size estimation for
-the Wilcoxon Mann-Whitney test.
+the two-sample Wilcoxon Mann-Whitney test.
 }
+\keyword{internal}

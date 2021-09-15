@@ -17,3 +17,4 @@ integer
 \description{
 Finds the index of the smaller neighbour of the given value in the vector x.
 }
+\keyword{internal}

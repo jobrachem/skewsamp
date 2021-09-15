@@ -15,3 +15,4 @@ numeric
 \description{
 Computes the lower boundary value for the empirical CDF
 }
+\keyword{internal}

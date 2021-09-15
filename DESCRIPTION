@@ -1,6 +1,6 @@
 Package: skewsamp
 Title: Estimate Sample Sizes for Group Comparisons with Skewed Distributions
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(
     as.person("Johannes Brachem <johannes.brachem@stud.uni-goettingen.de> [cre, aut]"),
@@ -8,9 +8,8 @@ Authors@R:
     )
 Description: Estimate necessary sample sizes for comparing the location
     of data from two groups or categories when the distribution of the 
-    data is skewed. This is useful, because assuming a normal distribution
-    may lead to overestimations of the necessary sample size. The package 
-    offers non-parametric methods for a Wilcoxon Mann-Whity test of 
+    data is skewed. The package 
+    offers a non-parametric method for a Wilcoxon Mann-Whity test of 
     location shift as well as methods for several generalized linear 
     models, for instance, Gamma regression.
 License: MIT + file LICENSE

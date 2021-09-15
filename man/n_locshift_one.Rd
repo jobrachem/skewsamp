@@ -4,7 +4,7 @@
 \alias{n_locshift_one}
 \title{Estimate N on the basis of one pilot sample.}
 \usage{
-n_locshift_one(sample, alpha, power, delta)
+n_locshift_one(sample, alpha, power, delta, q)
 }
 \arguments{
 \item{sample}{pilot data}
@@ -15,6 +15,8 @@ n_locshift_one(sample, alpha, power, delta)
 power}
 
 \item{delta}{numeric value, location shift parameter \eqn{\delta}}
+
+\item{q}{size of group0 relative to total sample size.}
 }
 \value{
 numeric value, an estimate of the sample size required to
@@ -24,6 +26,4 @@ test with \code{power} and \code{alpha}.
 \description{
 Estimate N on the basis of one pilot sample.
 }
-\examples{
-n_locshift_one(sample = 1:5, alpha = 0.05, power = 0.9, delta = 0.5)
-}
+\keyword{internal}
