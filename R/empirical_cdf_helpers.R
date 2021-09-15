@@ -4,6 +4,7 @@
 #' @param x, numeric vector
 #'
 #' @return integer
+#' @keywords internal
 find_smaller_index <- function(value, x) {
   helper <- function(value) utils::tail(which(x <= value), 1)
 
@@ -16,6 +17,7 @@ find_smaller_index <- function(value, x) {
 #' @param x, a numeric vector
 #'
 #' @return numeric
+#' @keywords internal
 create_lower_extension <- function(x) {
   sorted_x <- sort(x)
 
@@ -28,6 +30,7 @@ create_lower_extension <- function(x) {
 #' @param x, a numeric vector
 #'
 #' @return numeric
+#' @keywords internal
 create_upper_extension <- function(x) {
   m <- length(x)
   sorted_x <- sort(x)
@@ -43,6 +46,7 @@ create_upper_extension <- function(x) {
 #' @param x, a numeric vector
 #'
 #' @return extended and sorted numeric vector
+#' @keywords internal
 extend_sample <- function(x) {
   lower_ext <- create_lower_extension(x)
   upper_ext <- create_upper_extension(x)
