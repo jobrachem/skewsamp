@@ -1,0 +1,63 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# skewsamp
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of skewsamp is to provide access to sample size estimation
+methods for group comparisons where the underlying data are skewed and
+thus violate the assumptions for common methods of sample size estimation. 
+
+In particular, skewsamp offers an approach based on generalized linear
+models (GLM) as described by Cundill & Alexander (2015) and an approach
+based on the nonparametric Wilxocon-Mann-Whitney test in the location 
+shift paradigm as described by Chakraborti, Hong, & van de Wiel (2006).
+
+## Installation
+
+You can install the package using the binary file 
+`build/skewsamp_1.0.0.tgz` with the following command:
+
+``` r
+install.packages("<path-to-binary>/skewsamp_1.0.0.tgz", repos = NULL, type = "binary")
+```
+
+## Example 1
+
+Sample size determination in the GLM approach for gamma-distributed
+data:
+
+```{r example}
+library(skewsamp)
+skewsamp::n_gamma(mean0 = 1, effect = 0.5, shape0 = 1, alpha = 0.05, power = 0.9)
+```
+
+## Example 2
+
+Sample size determination in the location shiftb approach. This approach
+requires pilot data, which we draw from an exponential distribution for
+the sake of the example:
+
+```{r example2}
+library(skewsamp)
+skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, power = 0.9)
+```
+
+# References
+
+- Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations for skewed distributions. BMC Medical Research Methodology, 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+- Chakraborti, S., Hong, B., & Van De Wiel, M. A. (2006). A note on sample size determination for a nonparametric test of location. Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
