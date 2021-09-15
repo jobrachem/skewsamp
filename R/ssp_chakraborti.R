@@ -6,17 +6,18 @@
 #' sample size determination for a nonparametric test of location.
 #' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 #'
-#' @param s1,s2 Pilot samples
+#' @param s1,s2 pilot samples
 #' @param delta numeric value, location shift parameter \eqn{\delta}
-#' @param alpha Type I error probability
-#' @param power 1 - Type II error probability, the desired statistical
+#' @param alpha type-I error probability
+#' @param power 1 - type-II error probability, the desired statistical
 #'   power
+#' @param q size of group0 relative to total sample size.
 #'
 #' @return Returns an object of class \code{"sample_size"}. It contains
 #'   the following components:
-#'   \item{n}{the total sample size}
-#'   \item{n1}{sample size in Group 1 (control group)}
-#'   \item{n2}{sample size in Group 2 (treatment group)}
+#'   \item{N}{the total sample size}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
 #'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 #'     refers to a two-sided test}
 #'   \item{alpha}{type I error rate used in sample size estimation}
@@ -30,16 +31,19 @@
 #' n_locshift(s1 = rexp(10), s2 = rexp(10),
 #'            alpha = 0.05, power = 0.9, delta = 0.35)
 #' @export
-n_locshift <- function(s1, s2, delta, alpha, power) {
-  n1 <- n_locshift_one(s1, alpha, power, delta)
-  n2 <- n_locshift_one(s2, alpha, power, delta)
+n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, q = 0.5) {
+  n1 <- n_locshift_one(s1, alpha, power, delta, q)
+  n2 <- n_locshift_one(s2, alpha, power, delta, q)
 
-  n <- (n1 + n2) / 2
+  m1 <- length(s1)
+  m2 <- length(s2)
+
+  n <- (n1 * m1 + n2 * m2) / (m1 + m2)
 
   comment <- "Wilcoxon-Mann-Whitney Test, Location shift"
-  n <- sample_size(n * 2, two_sided = FALSE, alpha = alpha, power = power,
+  n <- sample_size(n, two_sided = FALSE, alpha = alpha, power = power,
                    effect = delta, effect_type = "location shift",
-                   q = 0.5,
+                   q = q,
                    comment = comment,
                    call = match.call()
   )
@@ -61,14 +65,18 @@ n_locshift <- function(s1, s2, delta, alpha, power) {
 #' @param alpha Type I error probability
 #' @param power 1 - Type II error probability, the desired statistical
 #'   power
+#' @param q size of group0 relative to total sample size.
 #' @export
 #'
 #' @return numeric vector of sample size estimates
-resample_n_locshift <- function(s1, s2, delta, alpha, power, n_resamples = 500) {
-  resamples_s1 <- resample_n_locshift_one(s1, alpha, power, delta, n_resamples)
-  resamples_s2 <- resample_n_locshift_one(s2, alpha, power, delta, n_resamples)
+resample_n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, n_resamples = 500, q = 0.5) {
+  resamples_s1 <- resample_n_locshift_one(s1, alpha, power, delta, n_resamples, q)
+  resamples_s2 <- resample_n_locshift_one(s2, alpha, power, delta, n_resamples, q)
 
-  resamples <- ceiling((resamples_s1 + resamples_s2) / 2)
+  m1 <- length(s1)
+  m2 <- length(s2)
+
+  resamples <- (resamples_s1 * m1 + resamples_s2 *m2) / (m1 + m2)
   resamples
 }
 
@@ -86,14 +94,15 @@ resample_n_locshift <- function(s1, s2, delta, alpha, power, n_resamples = 500) 
 #' @param power 1 - Type II error probability, the desired statistical
 #'   power
 #' @param n_resamples number of resamples to use in bootstrapping
-#' @param q Quantile to use as the upper bound.
+#' @param quantile Quantile to use as the upper bound.
+#' @param q size of group0 relative to total sample size.
 #' @export
 #'
 #' @return Returns an object of class \code{"sample_size"}. It contains
 #'   the following components:
 #'   \item{n}{the total sample size}
-#'   \item{n1}{sample size in Group 1 (control group)}
-#'   \item{n2}{sample size in Group 2 (treatment group)}
+#'   \item{n0}{sample size in Group 0 (control group)}
+#'   \item{n1}{sample size in Group 1 (treatment group)}
 #'   \item{two_sided}{logical, \code{TRUE}, if the estimated sample size
 #'     refers to a two-sided test}
 #'   \item{alpha}{type I error rate used in sample size estimation}
@@ -104,12 +113,12 @@ resample_n_locshift <- function(s1, s2, delta, alpha, power, n_resamples = 500) 
 #'   \item{call}{the matched call.}
 #'
 #' @examples
-#' n_locshift_upper_bound(s1 = rexp(10), s2 = rexp(10),
+#' n_locshift_bound(s1 = rexp(10), s2 = rexp(10),
 #'            delta = 0.35, alpha = 0.05, power = 0.9)
-n_locshift_upper_bound <- function(s1, s2, delta, alpha, power, q = 0.9, n_resamples = 500) {
-  resamples <- resample_n_locshift(s1, s2, delta, alpha, power, n_resamples)
+n_locshift_bound <- function(s1, s2, delta, alpha = 0.05, power = 0.9, quantile = 0.9, n_resamples = 500, q = 0.5) {
+  resamples <- resample_n_locshift(s1, s2, delta, alpha, power, n_resamples, q)
 
-  n <- stats::quantile(resamples, type = 3, probs = q)
+  n <- stats::quantile(resamples, type = 3, probs = quantile)
 
   note1 <- "Wilcoxon-Mann-Whitney Test, Location shift\n"
   note2 <- "NOTE: This is an intentionally conservative UPPER BOUND estimate."
@@ -118,6 +127,7 @@ n_locshift_upper_bound <- function(s1, s2, delta, alpha, power, q = 0.9, n_resam
   n <- sample_size(n, two_sided = FALSE,
                    alpha = alpha, power = power,
                    effect = delta, effect_type = "location shift",
+                   q = q,
                    comment = comment, call = match.call())
 
   n
