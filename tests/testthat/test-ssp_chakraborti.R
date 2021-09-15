@@ -20,6 +20,7 @@ test_that("resample_n_locshift runs", {
 })
 
 test_that("n_locshift_bound runs", {
+  set.seed(1)
   s1 <- rnorm(10)
   s2 <- rnorm(10)
 
