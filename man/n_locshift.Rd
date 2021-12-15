@@ -34,14 +34,21 @@ refers to a two-sided test}
 \item{call}{the matched call.}
 }
 \description{
-Chakraborti, Hong, & van de Wiel (2006)
+Estimation as described by Chakraborti, Hong, & van de Wiel (2006).
 }
 \details{
-Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
-sample size determination for a nonparametric test of location.
-Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
+WARNING: Note that the estimation has high variability due to its dependence
+on pilot samples. The smaller the pilot sample, the more uncertain is
+the estimation of the required sample size. In a simulation study, we
+found that the method may also be inaccurate on average, depending on
+the investigated data.
 }
 \examples{
 n_locshift(s1 = rexp(10), s2 = rexp(10),
            alpha = 0.05, power = 0.9, delta = 0.35)
+}
+\references{
+Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
+sample size determination for a nonparametric test of location.
+Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 }

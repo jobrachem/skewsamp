@@ -56,14 +56,14 @@ refers to a two-sided test}
 \item{call}{the matched call.}
 }
 \description{
-Citation: Cundill & Alexander (2015)
-}
-\details{
-Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-for skewed distributions. \emph{BMC Medical Research Methodology},
-15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+Estimation of required sample size as given by Cundill & Alexander (2015).
 }
 \examples{
 n_negbinom(mean0 = 71.4, effect = 0.7, dispersion0 = 0.33,
            alpha = 0.05, power = 0.9)
+}
+\references{
+Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+for skewed distributions. \emph{BMC Medical Research Methodology},
+15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 }

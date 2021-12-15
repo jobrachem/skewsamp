@@ -15,9 +15,15 @@ demp(x, sample)
 numeric vector of density values based on the EPDF
 }
 \description{
-Empirical probability density function (EPDF)
+Empirical probability density function based on a sample of observations,
+as described by Chakraborti (2006).
 }
 \examples{
 x <- 1:5
 demp(1, x)
+}
+\references{
+Chakraborti, S., Hong, B., & Van De Wiel, M. A. (2006).
+A note on sample size determination for a nonparametric test of location.
+Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 }

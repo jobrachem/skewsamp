@@ -1,11 +1,6 @@
 #' Calculate sample size for a group comparison via generalized linear models
 #'
-#' Citation: Cundill & Alexander (2015)
-#'
-#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-#' for skewed distributions. \emph{BMC Medical Research Methodology},
-#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
-#'
+#' Estimation of required sample size as given by Cundill & Alexander (2015).
 #'
 #' @param mean0 Mean in control group
 #' @param mean1 Mean in treatment group
@@ -23,6 +18,10 @@
 #'   allocated to the control group
 #'
 #' @return Total sample size (numeric)
+#' @references
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #' @export
 #'
 n_glm <- function(
@@ -53,11 +52,7 @@ n_glm <- function(
 
 #' Calculate sample size for gamma distribution
 #'
-#' Citation: Cundill & Alexander (2015)
-#'
-#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-#' for skewed distributions. \emph{BMC Medical Research Methodology},
-#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+#' Estimation of required sample size as given by Cundill & Alexander (2015).
 #'
 #' @param mean0 Mean in control group
 #' @param effect Effect size, \eqn{1 - (\mu_1 / \mu_0)}, where
@@ -87,6 +82,10 @@ n_glm <- function(
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #'
 #' @examples
 #' n_gamma(mean0 = 8.46, effect = 0.7, shape0 = 0.639,
@@ -129,12 +128,7 @@ n_gamma <- function(mean0, effect, shape0, shape1 = shape0,
 
 #' Calculate sample size for negative binomial distribution
 #'
-#' Citation: Cundill & Alexander (2015)
-#'
-#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-#' for skewed distributions. \emph{BMC Medical Research Methodology},
-#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
-#'
+#' Estimation of required sample size as given by Cundill & Alexander (2015).
 #'
 #' @param dispersion0 Dispersion parameter in control group
 #' @param dispersion1 Dispersion parameter in treatment group. Defaults to
@@ -154,6 +148,10 @@ n_gamma <- function(mean0, effect, shape0, shape1 = shape0,
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #'
 #' @examples
 #' n_negbinom(mean0 = 71.4, effect = 0.7, dispersion0 = 0.33,
@@ -192,11 +190,7 @@ n_negbinom <- function(mean0, effect,
 
 #' Calculate sample size for poisson distribution
 #'
-#' Citation: Cundill & Alexander (2015)
-#'
-#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-#' for skewed distributions. \emph{BMC Medical Research Methodology},
-#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+#' Estimation of required sample size as given by Cundill & Alexander (2015).
 #'
 #' @inheritParams n_gamma
 #'
@@ -213,6 +207,10 @@ n_negbinom <- function(mean0, effect,
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #'
 #' @examples
 #' n_poisson(mean0 = 5, effect = 0.3)
@@ -251,11 +249,7 @@ n_poisson <- function(mean0, effect,
 
 #' Calculate sample size for binomial distribution
 #'
-#' Citation: Cundill & Alexander (2015)
-#'
-#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
-#' for skewed distributions. \emph{BMC Medical Research Methodology},
-#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
+#' Estimation of required sample size as given by Cundill & Alexander (2015).
 #'
 #' @param p0 probability of success in group0
 #' @param size number of trials (greater than zero)
@@ -274,6 +268,10 @@ n_poisson <- function(mean0, effect,
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
+#' for skewed distributions. \emph{BMC Medical Research Methodology},
+#' 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0
 #'
 #' @examples
 #' n_binom(p0 = 0.5, effect = 0.3)

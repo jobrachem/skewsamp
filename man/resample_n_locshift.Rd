@@ -29,12 +29,20 @@ power}
 \item{q}{size of group0 relative to total sample size.}
 }
 \value{
-numeric vector of sample size estimates
+numeric vector of sample size estimates (total sample size)
 }
 \description{
-Chakraborti, Hong, & van de Wiel (2006)
+Estimation of sample sizes based on resampled pilot samples from the empirical
+cumulative density. Based on the work of Chakraborti, Hong, & van de Wiel (2006).
 }
 \details{
+WARNING: Note that the estimation has high variability due to its dependence
+on pilot samples. The smaller the pilot sample, the more uncertain is
+the estimation of the required sample size. In a simulation study, we
+found that the method may also be inaccurate on average, depending on
+the investigated data.
+}
+\references{
 Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
 sample size determination for a nonparametric test of location.
 Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193

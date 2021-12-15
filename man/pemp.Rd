@@ -17,9 +17,15 @@ empirical cumulative density based on \emph{sample} is smaller than or
 equal to the elements of x.
 }
 \description{
-Empirical cumulative density function (ECDF)
+Empirical cumulative density function based on a sample of observations,
+as used by described by Chakraborti (2006).
 }
 \examples{
 x <- 1:5
 pemp(1, x)
+}
+\references{
+Chakraborti, S., Hong, B., & Van De Wiel, M. A. (2006).
+A note on sample size determination for a nonparametric test of location.
+Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 }

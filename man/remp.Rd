@@ -15,9 +15,15 @@ remp(n, sample)
 numeric vector of random values drawn from the ECDF
 }
 \description{
-Draws random values from the ECDF obtained from \code{sample}
+Based on the empirical cumulative density function as presented by
+Chakraborti (2006).
 }
 \examples{
 x <- 1:5
 remp(10, x)
+}
+\references{
+Chakraborti, S., Hong, B., & Van De Wiel, M. A. (2006).
+A note on sample size determination for a nonparametric test of location.
+Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 }

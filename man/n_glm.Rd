@@ -46,9 +46,9 @@ allocated to the control group}
 Total sample size (numeric)
 }
 \description{
-Citation: Cundill & Alexander (2015)
+Estimation of required sample size as given by Cundill & Alexander (2015).
 }
-\details{
+\references{
 Cundill, B., & Alexander, N. D. E. (2015). Sample size calculations
 for skewed distributions. \emph{BMC Medical Research Methodology},
 15(1), 1–9. https://doi.org/10.1186/s12874-015-0023-0

@@ -1,10 +1,12 @@
 #' Estimate N on the basis of two pilot samples.
 #'
-#' Chakraborti, Hong, & van de Wiel (2006)
+#' Estimation as described by Chakraborti, Hong, & van de Wiel (2006).
 #'
-#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
-#' sample size determination for a nonparametric test of location.
-#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
+#' WARNING: Note that the estimation has high variability due to its dependence
+#' on pilot samples. The smaller the pilot sample, the more uncertain is
+#' the estimation of the required sample size. In a simulation study, we
+#' found that the method may also be inaccurate on average, depending on
+#' the investigated data.
 #'
 #' @param s1,s2 pilot samples
 #' @param delta numeric value, location shift parameter \eqn{\delta}
@@ -26,6 +28,10 @@
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
+#' sample size determination for a nonparametric test of location.
+#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 #'
 #' @examples
 #' n_locshift(s1 = rexp(10), s2 = rexp(10),
@@ -53,11 +59,14 @@ n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, q = 0.5) {
 
 #' Compute a distribution of estimates of N based on two pilot samples.
 #'
-#' Chakraborti, Hong, & van de Wiel (2006)
+#' Estimation of sample sizes based on resampled pilot samples from the empirical
+#' cumulative density. Based on the work of Chakraborti, Hong, & van de Wiel (2006).
 #'
-#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
-#' sample size determination for a nonparametric test of location.
-#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
+#' WARNING: Note that the estimation has high variability due to its dependence
+#' on pilot samples. The smaller the pilot sample, the more uncertain is
+#' the estimation of the required sample size. In a simulation study, we
+#' found that the method may also be inaccurate on average, depending on
+#' the investigated data.
 #'
 #' @param s1,s2 Pilot samples
 #' @param n_resamples number of resamples to use in bootstrapping
@@ -67,8 +76,12 @@ n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, q = 0.5) {
 #'   power
 #' @param q size of group0 relative to total sample size.
 #' @export
+#' @references
+#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
+#' sample size determination for a nonparametric test of location.
+#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 #'
-#' @return numeric vector of sample size estimates
+#' @return numeric vector of sample size estimates (total sample size)
 resample_n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, n_resamples = 500, q = 0.5) {
   resamples_s1 <- resample_n_locshift_one(s1, alpha, power, delta, n_resamples, q)
   resamples_s2 <- resample_n_locshift_one(s2, alpha, power, delta, n_resamples, q)
@@ -82,11 +95,14 @@ resample_n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, n_resa
 
 #' Compute an upper bound the sample size based on two pilot samples.
 #'
-#' Chakraborti, Hong, & van de Wiel (2006)
+#' Based on the procedure described by Chakraborti, Hong, & van de Wiel (2006)
 #'
-#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
-#' sample size determination for a nonparametric test of location.
-#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
+#' WARNING: Note that the underlying estimation has high variability due
+#' to its dependence on pilot samples. The smaller the pilot sample,
+#' the more uncertain is
+#' the estimation of the required sample size. In a simulation study, we
+#' found that the underlying method may also be inaccurate on average, depending on
+#' the investigated data.
 #'
 #' @param s1,s2 Pilot samples
 #' @param delta numeric value, location shift parameter \eqn{\delta}
@@ -111,6 +127,10 @@ resample_n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, n_resa
 #'   \item{effect_type}{short description of the type of effect size}
 #'   \item{comment}{additional comment, if there is any}
 #'   \item{call}{the matched call.}
+#' @references
+#' Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
+#' sample size determination for a nonparametric test of location.
+#' Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193
 #'
 #' @examples
 #' n_locshift_bound(s1 = rexp(10), s2 = rexp(10),
