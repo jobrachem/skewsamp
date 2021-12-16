@@ -80,9 +80,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         59.45 
-#> n0 (Group 0)      29.73 
-#> n1 (Group 1)      29.73 
+#> N (total)         59.36 
+#> n0 (Group 0)      29.68 
+#> n1 (Group 1)      29.68 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
@@ -95,6 +95,10 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 ```
 
 ## Function overview
+
+All function are documented. To get details on how to use them, use R’s
+integrated help function. Call, for example, `?skewsamp::n_poisson`, to
+get help on using the function `n_poisson`
 
 ### Sample size estimation for generalized linear models
 

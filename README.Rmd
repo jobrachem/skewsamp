@@ -76,6 +76,8 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 
 ## Function overview
 
+All function are documented. To get details on how to use them, use R's integrated help function. Call, for example, `?skewsamp::n_poisson`, to get help on using the function `n_poisson`
+
 ### Sample size estimation for generalized linear models
 
 - `n_poission`: Sample size estimation for poisson-distributed data
