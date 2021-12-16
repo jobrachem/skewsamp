@@ -134,7 +134,7 @@ resample_n_locshift <- function(s1, s2, delta, alpha = 0.05, power = 0.9, n_resa
 #'
 #' @examples
 #' n_locshift_bound(s1 = rexp(10), s2 = rexp(10),
-#'            delta = 0.35, alpha = 0.05, power = 0.9)
+#'            delta = 0.35, alpha = 0.05, power = 0.9, n_resamples = 5)
 n_locshift_bound <- function(s1, s2, delta, alpha = 0.05, power = 0.9, quantile = 0.9, n_resamples = 500, q = 0.5) {
   resamples <- resample_n_locshift(s1, s2, delta, alpha, power, n_resamples, q)
 
