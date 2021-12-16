@@ -15,7 +15,7 @@
 <meta property="og:description" content="Estimate necessary sample sizes for comparing the location
     of data from two groups or categories when the distribution of the 
     data is skewed. The package 
-    offers a non-parametric method for a Wilcoxon Mann-Whity test of 
+    offers a non-parametric method for a Wilcoxon Mann-Whitney test of 
     location shift as well as methods for several generalized linear 
     models, for instance, Gamma regression.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -65,7 +65,7 @@
 <div class="page-header"><h1 id="skewsamp">skewsamp<a class="anchor" aria-label="anchor" href="#skewsamp"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
+
 <p>The goal of skewsamp is to provide access to sample size estimation methods for group comparisons where the underlying data are skewed and thus violate the assumptions for common methods of sample size estimation.</p>
 <p>In particular, skewsamp offers an approach based on generalized linear models (GLM) as described by Cundill &amp; Alexander (2015) and the “NECDF” (Noether Empirical Distribution Function) approach based on the nonparametric Wilxocon-Mann-Whitney test in the location shift paradigm as described by Chakraborti, Hong, &amp; van de Wiel (2006).</p>
 <div class="section level2">
@@ -128,9 +128,9 @@
 <span class="co">#&gt; Estimated sample size for group difference.</span>
 <span class="co">#&gt; Wilcoxon-Mann-Whitney Test, Location shift </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; N (total)         91.3 </span>
-<span class="co">#&gt; n0 (Group 0)      45.65 </span>
-<span class="co">#&gt; n1 (Group 1)      45.65 </span>
+<span class="co">#&gt; N (total)         35.96 </span>
+<span class="co">#&gt; n0 (Group 0)      17.98 </span>
+<span class="co">#&gt; n1 (Group 1)      17.98 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Effect size       0.5 </span>
 <span class="co">#&gt; Effect type       location shift </span>
@@ -181,7 +181,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/jobrachem/skewsamp/actions" class="external-link"><img src="https://github.com/jobrachem/skewsamp/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </div>
 </div>

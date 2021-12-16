@@ -118,24 +118,9 @@ Technometrics, 48(1), 88–94. https://doi.org/10.1198/004017005000000193</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">n_locshift_bound</span><span class="op">(</span>s1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, s2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">           delta <span class="op">=</span> <span class="fl">0.35</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated sample size for group difference.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wilcoxon-Mann-Whitney Test, Location shift</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NOTE: This is an intentionally conservative UPPER BOUND estimate. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N (total)		 95.55 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> n0 (Group 0)		 47.77 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> n1 (Group 1)		 47.77 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Effect size		 0.35 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Effect type		 location shift </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type I error		 0.05 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Target power		 0.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Two-sided		 FALSE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: n_locshift_bound(s1 = rexp(10), s2 = rexp(10), delta = 0.35, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     alpha = 0.05, power = 0.9)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="fu">n_locshift_bound</span><span class="op">(</span>s1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, s2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span class="r-in">           delta <span class="op">=</span> <span class="fl">0.35</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.9</span>, n_resamples <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">}</span></span>
 </code></pre></div>
     </div>
   </div>
