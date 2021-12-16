@@ -37,6 +37,10 @@ You can install the package directly from github:
 devtools::install_github("https://github.com/jobrachem/skewsamp)
 ```
 
+## Documentation
+
+All function are documented, so that you can use R's builtin help system. You can also refer to the [online documentation](https://jobrachem.github.io/skewsamp/), which includes a [list of all functions](https://jobrachem.github.io/skewsamp/reference/index.html).
+
 ## Simulation study
 
 We verified the correctness of our implementation through extensive 
@@ -73,10 +77,6 @@ the sake of the example:
 library(skewsamp)
 skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, power = 0.9)
 ```
-
-## Function overview
-
-All function are documented. To get details on how to use them, use R's integrated help function. Call, for example, `?skewsamp::n_poisson`, to get help on using the function `n_poisson`. You can also refer to the [online documentation](https://jobrachem.github.io/skewsamp/), which includes a [list of all functions](https://jobrachem.github.io/skewsamp/reference/index.html).
 
 # References
 

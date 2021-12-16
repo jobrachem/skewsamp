@@ -26,6 +26,14 @@ You can install the package directly from github:
 devtools::install_github("https://github.com/jobrachem/skewsamp)
 ```
 
+## Documentation
+
+All function are documented, so that you can use R’s builtin help
+system. You can also refer to the [online
+documentation](https://jobrachem.github.io/skewsamp/), which includes a
+[list of all
+functions](https://jobrachem.github.io/skewsamp/reference/index.html).
+
 ## Simulation study
 
 We verified the correctness of our implementation through extensive
@@ -80,9 +88,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         63.71 
-#> n0 (Group 0)      31.86 
-#> n1 (Group 1)      31.86 
+#> N (total)         91.3 
+#> n0 (Group 0)      45.65 
+#> n1 (Group 1)      45.65 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
@@ -93,15 +101,6 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Call: skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, 
 #>     alpha = 0.05, power = 0.9)
 ```
-
-## Function overview
-
-All function are documented. To get details on how to use them, use R’s
-integrated help function. Call, for example, `?skewsamp::n_poisson`, to
-get help on using the function `n_poisson`. You can also refer to the
-[online documentation](https://jobrachem.github.io/skewsamp/), which
-includes a [list of all
-functions](https://jobrachem.github.io/skewsamp/reference/index.html).
 
 # References
 
