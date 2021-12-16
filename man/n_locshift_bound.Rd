@@ -58,8 +58,9 @@ found that the underlying method may also be inaccurate on average, depending on
 the investigated data.
 }
 \examples{
+\dontrun{
 n_locshift_bound(s1 = rexp(10), s2 = rexp(10),
-           delta = 0.35, alpha = 0.05, power = 0.9, n_resamples = 5)
+           delta = 0.35, alpha = 0.05, power = 0.9, n_resamples = 5)}
 }
 \references{
 Chakraborti, S., Hong, B., & van de Wiel, M. A. (2006). A note on
