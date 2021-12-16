@@ -3,7 +3,7 @@ Title: Estimate Sample Sizes for Group Comparisons with Skewed Distributions
 Version: 1.0.0
 Authors@R: 
     c(
-    as.person("Johannes Brachem <johannes.brachem@stud.uni-goettingen.de> [cre, aut]"),
+    as.person("Johannes Brachem <jbrachem@posteo.de> [cre, aut]"),
     as.person("Dominik Strache <dominik.strache@stud.uni-goettingen.de> [aut]")
     )
 Description: Estimate necessary sample sizes for comparing the location
