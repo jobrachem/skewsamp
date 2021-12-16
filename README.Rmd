@@ -70,7 +70,7 @@ skewsamp::n_gamma(mean0 = 1, effect = 0.5, shape0 = 1, alpha = 0.05, power = 0.9
 
 ### Example 2
 
-Sample size determination in the location shiftb approach. This approach
+Sample size determination in the location shift approach. This approach
 requires pilot data, which we draw from an exponential distribution for
 the sake of the example:
 

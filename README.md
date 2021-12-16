@@ -80,7 +80,7 @@ skewsamp::n_gamma(mean0 = 1, effect = 0.5, shape0 = 1, alpha = 0.05, power = 0.9
 
 ### Example 2
 
-Sample size determination in the location shiftb approach. This approach
+Sample size determination in the location shift approach. This approach
 requires pilot data, which we draw from an exponential distribution for
 the sake of the example:
 
@@ -90,9 +90,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         35.96 
-#> n0 (Group 0)      17.98 
-#> n1 (Group 1)      17.98 
+#> N (total)         97.35 
+#> n0 (Group 0)      48.68 
+#> n1 (Group 1)      48.68 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
