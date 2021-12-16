@@ -76,6 +76,11 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"https://github.com/jobrachem/skewsamp)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>All function are documented, so that you can use R’s builtin help system. You can also refer to the <a href="https://jobrachem.github.io/skewsamp/" class="external-link">online documentation</a>, which includes a <a href="https://jobrachem.github.io/skewsamp/reference/index.html" class="external-link">list of all functions</a>.</p>
+</div>
+<div class="section level2">
 <h2 id="simulation-study">Simulation study<a class="anchor" aria-label="anchor" href="#simulation-study"></a>
 </h2>
 <p>We verified the correctness of our implementation through extensive simulations. The data, code and final report are available on the Open Science Framework. Note that the report is written in <em>german</em>.</p>
@@ -123,9 +128,9 @@
 <span class="co">#&gt; Estimated sample size for group difference.</span>
 <span class="co">#&gt; Wilcoxon-Mann-Whitney Test, Location shift </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; N (total)         59.36 </span>
-<span class="co">#&gt; n0 (Group 0)      29.68 </span>
-<span class="co">#&gt; n1 (Group 1)      29.68 </span>
+<span class="co">#&gt; N (total)         91.3 </span>
+<span class="co">#&gt; n0 (Group 0)      45.65 </span>
+<span class="co">#&gt; n1 (Group 1)      45.65 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Effect size       0.5 </span>
 <span class="co">#&gt; Effect type       location shift </span>
@@ -135,53 +140,6 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call: skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, </span>
 <span class="co">#&gt;     alpha = 0.05, power = 0.9)</span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="function-overview">Function overview<a class="anchor" aria-label="anchor" href="#function-overview"></a>
-</h2>
-<p>All function are documented. To get details on how to use them, use R’s integrated help function. Call, for example, <code><a href="reference/n_poisson.html">?skewsamp::n_poisson</a></code>, to get help on using the function <code>n_poisson</code></p>
-<div class="section level3">
-<h3 id="sample-size-estimation-for-generalized-linear-models">Sample size estimation for generalized linear models<a class="anchor" aria-label="anchor" href="#sample-size-estimation-for-generalized-linear-models"></a>
-</h3>
-<ul>
-<li>
-<code>n_poission</code>: Sample size estimation for poisson-distributed data</li>
-<li>
-<code>n_negbinom</code>: Sample size estimation for negativ-binomially-distributed data</li>
-<li>
-<code>n_gamma</code>: Sample size estimation for gamma-distributed data</li>
-<li>
-<code>n_binom</code>: Sample size estimation for binomially-distributed data</li>
-<li>
-<code>n_glm</code>: General version of GLM sample size estimation. Can be used by advanced users to estimate required sample size for other distributions in the exponential family.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="sample-size-estimation-for-location-shift-in-wilcoxon-mann-whitney-wmw-test">Sample size estimation for location shift in Wilcoxon-Mann-Whitney (WMW) test<a class="anchor" aria-label="anchor" href="#sample-size-estimation-for-location-shift-in-wilcoxon-mann-whitney-wmw-test"></a>
-</h3>
-<ul>
-<li>
-<code>n_locshift</code>: NECDF sample size estimation for a location shift in the WMW test, based on pilot data. <strong>Warning</strong>: While our simulations verify a correct implementation of this functionality, the NECDF method is subject to significant variability and may underestimate the required sample size.</li>
-<li>
-<code>n_locshift_bound</code>: Estimated upper bound on the required sample size, obtained by resampling from the pilot samples.</li>
-<li>
-<code>n_resample_n_locshift</code>: Returns a vector of NECDF sample size estimations, obtained by resampling from the pilot data.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="empirical-distribution-functions">Empirical distribution functions<a class="anchor" aria-label="anchor" href="#empirical-distribution-functions"></a>
-</h3>
-<ul>
-<li>
-<code>pemp</code>: Empirical distribution function.</li>
-<li>
-<code>demp</code>: Empirical density function.</li>
-<li>
-<code>qemp</code>: Empirical quantile function.</li>
-<li>
-<code>remp</code>: Draws random values from the empirical distribution function.</li>
-</ul>
 </div>
 </div>
 </div>
