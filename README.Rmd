@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # skewsamp
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/jobrachem/skewsamp/workflows/R-CMD-check/badge.svg)](https://github.com/jobrachem/skewsamp/actions)
 <!-- badges: end -->
 
 The goal of skewsamp is to provide access to sample size estimation

@@ -4,6 +4,8 @@
 # skewsamp
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jobrachem/skewsamp/workflows/R-CMD-check/badge.svg)](https://github.com/jobrachem/skewsamp/actions)
 <!-- badges: end -->
 
 The goal of skewsamp is to provide access to sample size estimation
@@ -88,9 +90,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         91.3 
-#> n0 (Group 0)      45.65 
-#> n1 (Group 1)      45.65 
+#> N (total)         35.96 
+#> n0 (Group 0)      17.98 
+#> n1 (Group 1)      17.98 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
