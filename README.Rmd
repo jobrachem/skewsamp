@@ -23,20 +23,37 @@ methods for group comparisons where the underlying data are skewed and
 thus violate the assumptions for common methods of sample size estimation. 
 
 In particular, skewsamp offers an approach based on generalized linear
-models (GLM) as described by Cundill & Alexander (2015) and an approach
+models (GLM) as described by Cundill & Alexander (2015) and the "NECDF" 
+(Noether Empirical Distribution Function) approach
 based on the nonparametric Wilxocon-Mann-Whitney test in the location 
 shift paradigm as described by Chakraborti, Hong, & van de Wiel (2006).
 
 ## Installation
 
-You can install the package using the binary file 
-`build/skewsamp_1.0.0.tgz` with the following command:
+You can install the package directly from github:
 
 ``` r
-install.packages("<path-to-binary>/skewsamp_1.0.0.tgz", repos = NULL, type = "binary")
+# install.packages("devtools") # if you do not have devtools already installed, you need it for the installation
+devtools::install_github("https://github.com/jobrachem/skewsamp)
 ```
 
-## Example 1
+## Simulation study
+
+We verified the correctness of our implementation through extensive 
+simulations. The data, code and final report are available on the
+Open Science Framework. Note that the report is written in *german*. 
+
+- https://osf.io/z5vtf/ (Project)
+- https://osf.io/yb5xm/ (Report)
+
+The simulations revealed that the GLM-based approach (Cundill & Alexander, 2015) 
+works robustly. The nonparametric NECDF approach is dependent on pilot
+data and can provide significant underestimations of the required sample
+sizes. Please consult the report linked above for further details.
+
+## Usage
+
+### Example 1
 
 Sample size determination in the GLM approach for gamma-distributed
 data:
@@ -46,7 +63,7 @@ library(skewsamp)
 skewsamp::n_gamma(mean0 = 1, effect = 0.5, shape0 = 1, alpha = 0.05, power = 0.9)
 ```
 
-## Example 2
+### Example 2
 
 Sample size determination in the location shiftb approach. This approach
 requires pilot data, which we draw from an exponential distribution for
@@ -56,6 +73,31 @@ the sake of the example:
 library(skewsamp)
 skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, power = 0.9)
 ```
+
+## Function overview
+
+### Sample size estimation for generalized linear models
+
+- `n_poission`: Sample size estimation for poisson-distributed data
+- `n_negbinom`: Sample size estimation for negativ-binomially-distributed data
+- `n_gamma`: Sample size estimation for gamma-distributed data
+- `n_binom`: Sample size estimation for binomially-distributed data
+- `n_glm`: General version of GLM sample size estimation. Can be used by 
+  advanced users to estimate required sample size for other distributions
+  in the exponential family.
+
+### Sample size estimation for location shift in Wilcoxon-Mann-Whitney (WMW) test
+
+- `n_locshift`: NECDF sample size estimation for a location shift in the WMW test, based on pilot data. **Warning**: While our simulations verify a correct implementation of this functionality, the NECDF method is subject to significant variability and may underestimate the required sample size.
+- `n_locshift_bound`: Estimated upper bound on the required sample size, obtained by resampling from the pilot samples.
+- `n_resample_n_locshift`: Returns a vector of NECDF sample size estimations, obtained by resampling from the pilot data.
+
+### Empirical distribution functions
+
+- `pemp`: Empirical distribution function.
+- `demp`: Empirical density function.
+- `qemp`: Empirical quantile function.
+- `remp`: Draws random values from the empirical distribution function.
 
 # References
 
