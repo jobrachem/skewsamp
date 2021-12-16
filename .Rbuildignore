@@ -5,3 +5,6 @@
 ^devscripts$
 ^README\.Rmd$
 build/*
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
