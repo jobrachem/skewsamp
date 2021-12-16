@@ -80,9 +80,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         59.36 
-#> n0 (Group 0)      29.68 
-#> n1 (Group 1)      29.68 
+#> N (total)         63.71 
+#> n0 (Group 0)      31.86 
+#> n1 (Group 1)      31.86 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
@@ -98,38 +98,10 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 
 All function are documented. To get details on how to use them, use R’s
 integrated help function. Call, for example, `?skewsamp::n_poisson`, to
-get help on using the function `n_poisson`
-
-### Sample size estimation for generalized linear models
-
--   `n_poission`: Sample size estimation for poisson-distributed data
--   `n_negbinom`: Sample size estimation for
-    negativ-binomially-distributed data
--   `n_gamma`: Sample size estimation for gamma-distributed data
--   `n_binom`: Sample size estimation for binomially-distributed data
--   `n_glm`: General version of GLM sample size estimation. Can be used
-    by advanced users to estimate required sample size for other
-    distributions in the exponential family.
-
-### Sample size estimation for location shift in Wilcoxon-Mann-Whitney (WMW) test
-
--   `n_locshift`: NECDF sample size estimation for a location shift in
-    the WMW test, based on pilot data. **Warning**: While our
-    simulations verify a correct implementation of this functionality,
-    the NECDF method is subject to significant variability and may
-    underestimate the required sample size.
--   `n_locshift_bound`: Estimated upper bound on the required sample
-    size, obtained by resampling from the pilot samples.
--   `n_resample_n_locshift`: Returns a vector of NECDF sample size
-    estimations, obtained by resampling from the pilot data.
-
-### Empirical distribution functions
-
--   `pemp`: Empirical distribution function.
--   `demp`: Empirical density function.
--   `qemp`: Empirical quantile function.
--   `remp`: Draws random values from the empirical distribution
-    function.
+get help on using the function `n_poisson`. You can also refer to the
+[online documentation](https://jobrachem.github.io/skewsamp/), which
+includes a [list of all
+functions](https://jobrachem.github.io/skewsamp/reference/index.html).
 
 # References
 
