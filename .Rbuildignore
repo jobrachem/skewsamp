@@ -10,3 +10,4 @@ build/*
 ^pkgdown$
 ^cran-comments.md$
 ^\.github$
+^CRAN-SUBMISSION$
