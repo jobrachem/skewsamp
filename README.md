@@ -21,10 +21,17 @@ as described by Chakraborti, Hong, & van de Wiel (2006).
 
 ## Installation
 
-You can install the package directly from github:
+Skewsamp is available directly from CRAN:
 
 ``` r
-# install.packages("devtools") # if you do not have devtools already installed, you need it for the installation
+install.packages("skewsamp")
+```
+
+You can also install the latest development version directly from
+github:
+
+``` r
+# install.packages("devtools") # needed for the installation
 devtools::install_github("https://github.com/jobrachem/skewsamp)
 ```
 
@@ -90,9 +97,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         97.35 
-#> n0 (Group 0)      48.68 
-#> n1 (Group 1)      48.68 
+#> N (total)         48.46 
+#> n0 (Group 0)      24.23 
+#> n1 (Group 1)      24.23 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
