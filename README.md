@@ -60,9 +60,9 @@ Science Framework. Note that the report is written in *german*.
 -   <https://osf.io/yb5xm/> (Report)
 
 The simulations revealed that the GLM-based approach (Cundill &
-Alexander, 2015) works robustly. The nonparametric NECDF approach is
+Alexander, 2015) works robustly. **The nonparametric NECDF approach is
 dependent on pilot data and can provide significant underestimations of
-the required sample sizes. Please consult the report linked above for
+the required sample sizes**. Please consult the report linked above for
 further details.
 
 ## Usage
@@ -104,9 +104,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         76.5 
-#> n0 (Group 0)      38.25 
-#> n1 (Group 1)      38.25 
+#> N (total)         60.23 
+#> n0 (Group 0)      30.12 
+#> n1 (Group 1)      30.12 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
