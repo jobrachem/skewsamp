@@ -19,6 +19,13 @@ models (GLM) as described by Cundill & Alexander (2015) and the “NECDF”
 nonparametric Wilxocon-Mann-Whitney test in the location shift paradigm
 as described by Chakraborti, Hong, & van de Wiel (2006).
 
+The GLM approach is purely analytical, while the NECDF approach relies
+on pilot samples. These pilot samples are used to estimate
+*p* = *P*(*X*\<*Y*), where *X* and *Y* are independent random variables,
+representing the control- and experimental group. With the estimate of
+*p*, sample size estimation proceeds analytically as detailed by Noether
+(1987).
+
 ## Installation
 
 Skewsamp is available directly from CRAN:
@@ -97,9 +104,9 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
 #> Estimated sample size for group difference.
 #> Wilcoxon-Mann-Whitney Test, Location shift 
 #> 
-#> N (total)         48.46 
-#> n0 (Group 0)      24.23 
-#> n1 (Group 1)      24.23 
+#> N (total)         76.5 
+#> n0 (Group 0)      38.25 
+#> n1 (Group 1)      38.25 
 #> 
 #> Effect size       0.5 
 #> Effect type       location shift 
@@ -120,3 +127,7 @@ skewsamp::n_locshift(s1 = rexp(10), s2 = rexp(10), delta = 0.5, alpha = 0.05, po
     sample size determination for a nonparametric test of location.
     Technometrics, 48(1), 88–94.
     <https://doi.org/10.1198/004017005000000193>
+-   Noether, G. E. (1987). Sample size determination for some common
+    nonparametric tests. Journal of the American Statistical
+    Association, 82(398), 645–647.
+    <https://doi.org/10.1080/01621459.1987.10478478>
